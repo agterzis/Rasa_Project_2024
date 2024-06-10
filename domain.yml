@@ -14,6 +14,9 @@ intents:
 entities:
     - id
 
+actions:
+  - action_check_order_id
+
 slots:
   id:
     type: float
