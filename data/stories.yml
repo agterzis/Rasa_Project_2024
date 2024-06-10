@@ -2,6 +2,20 @@ version: "3.1"
 
 stories:
 
+- story: give_order_info #User asks information about his order location
+  steps:
+  - intent: order_info
+  - slot_was_set:
+      - id: 12345
+  - action: utter_give_order_info
+
+- story: give_order_info_without_id
+  steps:
+  - intent: order_info
+  - action: utter_ask_order_id
+  - intent: give_id
+  - action: utter_give_order_info
+
 - story: happy path
   steps:
   - intent: greet

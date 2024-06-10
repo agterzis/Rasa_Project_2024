@@ -8,8 +8,28 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - order_info
+  - give_id
+
+entities:
+    - id
+
+slots:
+  id:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: id
 
 responses:
+
+  utter_ask_order_id:
+    - text: "Can you tell me your order ID please?"
+
+  utter_give_order_info:
+     - text: "Your order will arrive in one day"
+
   utter_greet:
   - text: "Hey! How are you?"
 
