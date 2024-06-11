@@ -2,7 +2,7 @@ from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet  # Import SlotSet
+from rasa_sdk.events import SlotSet, AllSlotsReset
 
 
 class ActionCheckOrderId(Action):
@@ -36,6 +36,14 @@ class ActionRecommendProduct(Action):
         product_color = tracker.get_slot("product_color")
         gender = tracker.get_slot("gender")
         size = tracker.get_slot("size")
+
+        if not product_type:
+            dispatcher.utter_message(template="utter_ask_product_type")
+            return [SlotSet("product_type", None)]
+
+        if not gender:
+            dispatcher.utter_message(template="utter_ask_gender")
+            return [SlotSet("gender", None)]
         
         # Predefined shoe data with type, color, gender, and size
         shoes_catalog = [
@@ -43,6 +51,8 @@ class ActionRecommendProduct(Action):
             {"name": "Adidas Ultraboost", "type": "running", "color": "black", "gender": "women", "sizes": [6, 7, 8, 9]},
             {"name": "Salomon X Ultra 3", "type": "hiking", "color": "blue", "gender": "any", "sizes": [9, 10, 11]},
             {"name": "Merrell Moab 2", "type": "hiking", "color": "green", "gender": "men", "sizes": [8, 9, 10]},
+            {"name": "Teva Hurricane XLT2", "type": "hiking", "color": "green", "gender": "any", "sizes": [8, 9, 10, 11]},
+            {"name": "Chaco Z/1 Classic", "type": "hiking", "color": "black", "gender": "women", "sizes": [6, 7, 8]},
             {"name": "Converse Chuck Taylor", "type": "sneakers", "color": "red", "gender": "women", "sizes": [6, 7, 8]},
             {"name": "Adidas Superstar", "type": "sneakers", "color": "white", "gender": "any", "sizes": [8, 9, 10, 11]},
             {"name": "Air Jordan 1", "type": "basketball", "color": "black", "gender": "men", "sizes": [10, 11, 12]},
@@ -55,11 +65,10 @@ class ActionRecommendProduct(Action):
             {"name": "Nike Metcon 6", "type": "gym", "color": "black", "gender": "any", "sizes": [8, 9, 10, 11]},
             {"name": "Havaianas Top", "type": "slippers", "color": "blue", "gender": "any", "sizes": [8, 9, 10, 11]},
             {"name": "UGG Scuff", "type": "slippers", "color": "brown", "gender": "men", "sizes": [9, 10, 11]},
-            {"name": "Teva Hurricane XLT2", "type": "hiking", "color": "green", "gender": "any", "sizes": [8, 9, 10, 11]},
-            {"name": "Chaco Z/1 Classic", "type": "hiking", "color": "black", "gender": "women", "sizes": [6, 7, 8]},
             {"name": "Adidas Copa Mundial", "type": "soccer", "color": "white", "gender": "men", "sizes": [8, 9, 10]},
             {"name": "Nike Mercurial Vapor 13", "type": "soccer", "color": "black", "gender": "any", "sizes": [9, 10, 11]},
         ]
+
 
         # Filter shoes based on user input
         filtered_shoes = []
@@ -68,7 +77,7 @@ class ActionRecommendProduct(Action):
                 continue
             if product_color and shoes["color"] != product_color.lower():
                 continue
-            if gender and shoes["gender"] != gender.lower() and shoes["gender"] != "any":
+            if gender and shoes["gender"] != gender.lower() :
                 continue
             if size and size not in shoes["sizes"]:
                 continue
@@ -90,4 +99,4 @@ class ActionRecommendProduct(Action):
 
         dispatcher.utter_message(text=message)
 
-        return []
+        return [AllSlotsReset()]

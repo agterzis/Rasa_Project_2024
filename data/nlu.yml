@@ -50,6 +50,7 @@ nlu:
     - I need [gym](product_type) footwear 
     - [slippers](product_type)
     - [basketball](product_type) in size [8](size) please
+    - I want [hiking](product_type) shoes for [women](gender)
 
 - intent: greet
   examples: |
@@ -176,3 +177,16 @@ nlu:
     - What are your features?
     - How can you assist me?
     - What functions do you have?
+
+- intent: thank_you
+  examples: |
+    - thank you
+    - thanks
+    - thank you so much
+    - thanks a lot
+    - appreciate it
+    - thank you very much
+    - I'm grateful
+    - many thanks
+    - much appreciated
+    - ty

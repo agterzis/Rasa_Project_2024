@@ -47,6 +47,24 @@ stories:
     - size: "10"
   - action: action_recommend_product
 
+#User asks for a product recommendation giving product type, size without gender
+- story: product recommendation with product type, size without gender
+  steps:
+  - intent: product_recommendation
+    entities:
+     - product_type: "running"
+     - size: "10"
+  - slot_was_set:
+    - product_type: "running"
+    - size: "10"
+  - action: utter_ask_gender
+  - intent: provide_gender
+    entities:
+     - gender: "men"
+  - slot_was_set:
+    - gender: "men"
+  - action: action_recommend_product
+
 #User asks for a product recommendation giving product type and gender
 - story: product recommendation with product type and gender
   steps:
@@ -98,7 +116,7 @@ stories:
   - action: utter_ask_product_type
   - intent: product_recommendation
     entities:
-      - product_type: "hiking"
+    - product_type: "hiking"
   - slot_was_set:
     - product_type: "hiking"
   - action: utter_ask_gender
@@ -116,29 +134,18 @@ stories:
   - action: utter_what_can_i_do
 
 
-- story: happy path
+- story: user_thanks_and_engage
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
-
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
+  - intent: thank_you
+  - action: utter_thank_you
   - intent: affirm
-  - action: utter_happy
+  - action: utter_affrim
 
-- story: sad path 2
+- story: user_thanks_and_goodbye
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
+  - intent: thank_you
+  - action: utter_thank_you
   - intent: deny
   - action: utter_goodbye
+
+

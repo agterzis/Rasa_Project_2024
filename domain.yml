@@ -13,6 +13,7 @@ intents:
   - product_recommendation
   - provide_gender
   - ask_what_can_you_do
+  - thank_you
 
 entities:
     - id
@@ -84,11 +85,14 @@ responses:
   utter_did_that_help:
   - text: "Did that help you?"
 
-  utter_happy:
-  - text: "Great, carry on!"
+  utter_affrim:
+  - text: "Great. Do you need more help?"
+
+  utter_thank_you:
+  - text: "You're welcome! Is there anything else I can help you with today?"
 
   utter_goodbye:
-  - text: "Bye"
+  - text: "Thank you for visiting us! It was a pleasure assisting you. If you need any more help in the future, feel free to reach out. Have a wonderful day!"
 
   utter_iamabot:
   - text: "I am a bot, but I'm here and ready to help you with anything you need!"
