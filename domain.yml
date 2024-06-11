@@ -102,7 +102,7 @@ responses:
   utter_iamabot:
   - text: "I am a bot, but I'm here and ready to help you with anything you need!"
 
-utter_out_of_scope:
+  utter_out_of_scope:
     - text: "I'm sorry, I can't help with that. I'm here to assist you with finding the perfect pair of shoes and providing information about our store. Is there something else I can help you with?"
 
 actions:
