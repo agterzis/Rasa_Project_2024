@@ -14,6 +14,7 @@ intents:
   - provide_gender
   - ask_what_can_you_do
   - thank_you
+  - out_of_scope
 
 entities:
     - id

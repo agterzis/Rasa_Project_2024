@@ -190,3 +190,16 @@ nlu:
     - many thanks
     - much appreciated
     - ty
+
+- intent: out_of_scope
+  examples: |
+    - that's not what I want 
+    - you are no help
+    - stop
+    - order a pizza
+    - tell me the weather
+    - none of your business 
+    - stop asking 
+    - nevermind
+    - I changed my mind
+    - I want something else
