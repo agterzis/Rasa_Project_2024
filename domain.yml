@@ -10,9 +10,16 @@ intents:
   - bot_challenge
   - order_info
   - give_id
+  - product_recommendation
+  - provide_gender
+  - ask_what_can_you_do
 
 entities:
     - id
+    - product_type
+    - product_color
+    - gender
+    - size
 
 slots:
   id:
@@ -21,17 +28,54 @@ slots:
     mappings:
       - type: from_entity
         entity: id
+  product_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: product_type   
+  product_color:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: product_color
+  gender:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: gender
+  size:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: size
+
 
 responses:
 
   utter_ask_order_id:
-    - text: "Can you tell me your order ID please?"
+  - text: "Can you tell me your order ID please?"
 
   utter_give_order_info:
-     - text: "Your order will arrive in one day"
+  - text: "Your order will arrive in one day"
+
+  utter_ask_product_type:
+  - text: "Sure, I can help with that. What type of shoes are you looking for? (e.g., running, formal, casual, sports, etc.)"
+
+  utter_recommend_product:
+  - text: "Based on your preferences for {product_type} shoes, here are some recommendations: {product_recommendations}"
+
+  utter_ask_gender:
+  - text: "Are you looking for {product_type} shoes for men, women, or any gender?"
 
   utter_greet:
-  - text: "Hey! How are you?"
+  - text: "Hello and welcome to our e-shop! I'm here to help you find the perfect pair of shoes for any occasion. Whether you're looking for running shoes, formal wear, or something casual, just let me know and I'll guide you through our collection. Additionally, I can provide information about our store, such as our refund policies, order status, and more. How can I assist you today?"
+
+  utter_what_can_i_do:
+  - text: "I can help you find the perfect shoes from our collection, check the status of your orders, provide information about our refund policies, and answer any other questions you might have about our store. How can I assist you today?"
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
@@ -47,7 +91,11 @@ responses:
   - text: "Bye"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  - text: "I am a bot, but I'm here and ready to help you with anything you need!"
+
+actions:
+  - action_recommend_product
+  - action_check_order_id
 
 session_config:
   session_expiration_time: 60

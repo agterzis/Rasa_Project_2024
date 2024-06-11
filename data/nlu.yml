@@ -22,6 +22,35 @@ nlu:
 #    - Can you tell me the status of my order?
 #    - Why hasn't my order arrived yet?
 
+
+
+- intent: product_recommendation
+  examples: |
+    - Can you suggest some [casual](product_type) shoes?
+    - Can you help me find a product?
+    - I'm looking for shoes
+    - I need help finding the right shoes
+    - Can you recommend some shoes for me?
+    - Show me the best [running](product_type) shoes
+    - What shoes do you have for [hiking](product_type)?
+    - Do you have any [sneakers](product_type)?
+    - I'm searching for [formal](product_type) shoes
+    - Recommend some shoes for [sports](product_type)
+    - I need new [basketball](product_type) shoes
+    - What are your most popular shoes?
+    - Do you have any [black](product_color) [running](product_type) shoes?
+    - I'm looking for [red](product_color) [casual](product_type) shoes for [women](gender)
+    - Can you recommend [white](product_color) [sneakers](product_type) for [men](gender) in size [10](size)?
+    - Do you have [blue](product_color) [hiking](product_type) shoes in size [8](size)?
+    - Show me [any](gender) [formal](product_type) shoes
+    - I need gender [neutral](gender) shoes in size [5](size)
+    - I want [slippers](product_type)
+    - Show me shoes for [soccer](product_type) in size [8](size)
+    - Any good shoes for [walking](product_type) ?
+    - I need [gym](product_type) footwear 
+    - [slippers](product_type)
+    - [basketball](product_type) in size [8](size) please
+
 - intent: greet
   examples: |
     - hey
@@ -59,6 +88,14 @@ nlu:
     - of course
     - that sounds good
     - correct
+    - ok
+    - sure
+    - why not
+    - ok great
+    - yeah
+    - fine
+    - I like them
+
 
 - intent: deny
   examples: |
@@ -69,6 +106,9 @@ nlu:
     - don't like that
     - no way
     - not really
+    - no thank yoy
+    - I do not like 
+    - absolutely not
 
 - intent: mood_great
   examples: |
@@ -110,3 +150,29 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: provide_gender
+  examples: |
+    - [men](gender)
+    - [woman](gender)
+    - [any](gender) gender
+    - no preference
+    - [neutral](gender)
+    - [any](gender)
+    - [all](gender)
+    - I am looking for shoes for [men](gender)
+    - I need [women](gender)'s shoes
+    - I'm shopping for [any](gender) gender shoes
+
+- intent: ask_what_can_you_do
+  examples: |
+    - What can you do?
+    - What services do you offer?
+    - How can you help me?
+    - What can you help me with?
+    - What are your capabilities?
+    - What kind of assistance do you provide?
+    - Can you tell me what you can do?
+    - What are your features?
+    - How can you assist me?
+    - What functions do you have?

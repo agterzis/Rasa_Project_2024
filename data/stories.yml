@@ -2,7 +2,8 @@ version: "3.1"
 
 stories:
 
-- story: give_order_info #User asks information about his order location
+#User asks information about his order location
+- story: give_order_info 
   steps:
   - intent: order_info
   - slot_was_set:
@@ -15,6 +16,105 @@ stories:
   - action: utter_ask_order_id
   - intent: give_id
   - action: utter_give_order_info
+
+#User asks for a product recommendation giving product type, color, size and gender
+- story: product recommendation with all details
+  steps:
+  - intent: product_recommendation
+    entities:
+      - product_type: "running"
+      - product_color: "white"
+      - gender: "men"
+      - size: "10"
+  - slot_was_set:
+    - product_type: "running"
+    - product_color: "white"
+    - gender: "men"
+    - size: "10"
+  - action: action_recommend_product
+
+#User asks for a product recommendation giving product type, size and gender
+- story: product recommendation with product type, size and gender
+  steps:
+  - intent: product_recommendation
+    entities:
+      - product_type: "running"
+      - gender: "men"
+      - size: "10"
+  - slot_was_set:
+    - product_type: "running"
+    - gender: "men"
+    - size: "10"
+  - action: action_recommend_product
+
+#User asks for a product recommendation giving product type and gender
+- story: product recommendation with product type and gender
+  steps:
+  - intent: product_recommendation
+    entities:
+      - product_type: "soccer"
+      - gender: "men"
+  - slot_was_set:
+    - product_type: "soccer"
+    - gender: "men"
+  - action: action_recommend_product  
+
+#User asks for a product recommendation giving product type without gender
+- story: product recommendation without gender
+  steps:
+  - intent: product_recommendation
+    entities:
+    - product_type: "running"
+  - slot_was_set:
+    - product_type: "running"
+  - action: utter_ask_gender
+  - intent: provide_gender
+    entities:
+    - gender: "men"
+  - slot_was_set:
+    - gender: "men"
+  - action: action_recommend_product
+
+#User asks for a product recommendation giving gender without product type
+- story: product recommendation giving gender without product type
+  steps:
+  - intent: provide_gender
+    entities:
+    - gender: "men"
+  - slot_was_set:
+    - gender: "men"
+  - action: utter_ask_product_type
+  - intent: product_recommendation
+    entities:
+    - product_type: "running"
+  - slot_was_set:
+    - product_type: "running"
+  - action: action_recommend_product
+
+#User asks for a product recommendation without details
+- story: product recommendation without details
+  steps:
+  - intent: product_recommendation
+  - action: utter_ask_product_type
+  - intent: product_recommendation
+    entities:
+      - product_type: "hiking"
+  - slot_was_set:
+    - product_type: "hiking"
+  - action: utter_ask_gender
+  - intent: provide_gender
+    entities:
+      - gender: "any"
+  - slot_was_set:
+    - gender: "any"
+  - action: action_recommend_product
+
+#User asks bot capabilities
+- story: user asks the bot what they can do
+  steps:
+  - intent: ask_what_can_you_do
+  - action: utter_what_can_i_do
+
 
 - story: happy path
   steps:
