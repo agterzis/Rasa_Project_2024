@@ -193,6 +193,13 @@ nlu:
 
 - intent: out_of_scope
   examples: |
+    - I want to order a pizza
+    - What's the weather like?
+    - Tell me a joke
+    - Can you book a flight for me?
+    - What time is it?
+    - Tell me something interesting
+    - Who won the game last night?
     - that's not what I want 
     - you are no help
     - stop

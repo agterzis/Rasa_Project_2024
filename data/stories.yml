@@ -2,6 +2,12 @@ version: "3.1"
 
 stories:
 
+#User asks something irrelevant 
+- story: handle out of scope
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
 #User asks information about his order location
 - story: give_order_info 
   steps:
@@ -139,7 +145,7 @@ stories:
   - intent: thank_you
   - action: utter_thank_you
   - intent: affirm
-  - action: utter_affrim
+  - action: utter_ask_if_need_anything_else
 
 - story: user_thanks_and_goodbye
   steps:
