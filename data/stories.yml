@@ -24,6 +24,8 @@ stories:
   - intent: request_refund
   - action: utter_ask_order_id
   - intent: give_id
+    entities:
+      - id: "12345"
   - action: action_check_order_id
 
   # User wants to exchange his order
@@ -34,14 +36,28 @@ stories:
   - intent: request_exchange
   - action: utter_ask_order_id
   - intent: give_id
+    entities:
+      - id: "12345"
   - action: action_check_order_id
   # story: product recommendation with all details
 
+
+# User asks for his order location without giving his ID order
 - story: give_order_info_without_id
   steps:
-  - intent: order_info
+  - intent: order_info_without_id
   - action: utter_ask_order_id
   - intent: give_id
+    entities:
+      - id: "12345"
+  - action: action_check_order_id
+
+# User asks for his order location and giving his ID order
+- story: give_order_info_with_id
+  steps:
+  - intent: order_info_with_id
+    entities:
+      - id: "12345"
   - action: action_check_order_id
 
 - story: happy path

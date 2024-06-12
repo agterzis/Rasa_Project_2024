@@ -11,7 +11,7 @@ class ActionCheckOrderId(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        order_id = next(tracker.get_latest_entity_values("id"), None)
+        order_id = tracker.get_slot("id")
         # intent_name = tracker.latest_message['intent'].get('name')
         # current_story = tracker.get_slot("current_story")
         exchange_requested = tracker.get_slot("exchange")  # Παίρνουμε την τιμή του slot
@@ -27,10 +27,11 @@ class ActionCheckOrderId(Action):
             return []
         else:
             if order_id == "12345":
-                dispatcher.utter_message(text="Your order will arrive in one day.")
+                dispatcher.utter_message(text=f"Your order with ID: {order_id} will arrive in one day.")
                 return []
             else:
-                dispatcher.utter_message(text=f"Sorry, I couldn't find any order with ID {order_id}. Please try again!")
+                dispatcher.utter_message(text=f"Sorry, I couldn't find any order with ID {order_id}. Can I help you "
+                                              f"with something else?")
                 return []
 
 
@@ -44,7 +45,7 @@ class ActionCheckStoreLocation(Action):
 
         location = tracker.get_slot("location")
 
-        if location.lower() == "Thessaloniki":
+        if location.lower() == "thessaloniki":
             dispatcher.utter_message(
                 text="We have two stores. The first one is located at 10 Egnatia Street and the second one is at "
                      "5 Tsimiski Street.")
@@ -53,4 +54,3 @@ class ActionCheckStoreLocation(Action):
                 text=f"Unfortunately, we don't have any store in {location} at the moment. We only have stores in "
                      f"Thessaloniki.")
         return []
-

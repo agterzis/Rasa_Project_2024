@@ -8,7 +8,8 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
-  - order_info
+  - order_info_with_id
+  - order_info_without_id
   - give_id
   - problem_with_order
   - request_refund
@@ -30,7 +31,7 @@ actions:
 slots:
   location:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
       - type: from_entity
         entity: location
@@ -64,10 +65,8 @@ responses:
       - text: "Yes, we have two stores located in Thessaloniki. The first one is located at 10 Egnatia Street and the second one is at 5 Tsimiski Street."
 
   utter_ask_order_id:
-    - text: "Can you tell me your order ID please?"
+    - text: "Can you tell me your order ID, please?"
 
-  utter_give_order_info:
-   - text: "Your order will arrive in one day"
 
 # Emotional intelligence
   utter_problem_with_order:
@@ -75,9 +74,6 @@ responses:
     - text: "I apologize for the problem with your order. Please let me know if you'd like to return the shoes for a full refund or try another solution."
     - text: "I understand your frustration with the order. I would be happy to help you return the shoes and find a better solution."
 
-
-  utter_return_order:
-    - text: "Sorry, I can't find your order in our system. There seems to be a problem. Do you want to cancel the order or repeat?"
 
   utter_greet:
   - text: "Hey! How are you?"

@@ -33,7 +33,6 @@ nlu:
     - I'd like to exchange this item
     - I need to exchange this for something else
     - Exchange this item please
-    
 
 - intent: give_id
   examples: |
@@ -42,12 +41,17 @@ nlu:
     - Μy order's ID is [12345](id)
     - Yes, it's [12345](id)
 
-- intent: order_info
+- intent: order_info_with_id
   examples: |
     - Where is my order with id [12345](id)?
     - When will my order with id [12345](id) arrive?
-    - Can you tell me the status of my order with id [12345](id)?
     - Why hasn't my order with id [12345](id) arrived yet?  
+
+- intent: order_info_without_id
+  examples: |
+    - Where is my order?
+    - When will my order arrive?
+    - Why hasn't my order arrived yet?
 
 - intent: problem_with_order
   examples: |
