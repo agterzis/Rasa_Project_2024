@@ -2,12 +2,27 @@ version: "3.1"
 
 stories:
 
-- story: give_order_info #User asks information about his order location
+
+# User wants refund
+- story: refund_order
   steps:
-  - intent: order_info
-  - slot_was_set:
-      - id: 12345
-  - action: utter_give_order_info
+  - intent: problem_with_order
+  - action: utter_problem_with_order
+  - intent: request_refund
+  - action: utter_ask_order_id
+  - intent: give_id
+  - action: action_check_order_id
+
+  # User wants to exchange his order
+- story: exchange_order
+  steps:
+  - intent: problem_with_order
+  - action: utter_problem_with_order
+  - intent: request_exchange
+  - action: utter_ask_order_id
+  - intent: give_id
+  - action: action_check_order_id
+  # story: product recommendation with all details
 
 - story: give_order_info_without_id
   steps:
@@ -15,15 +30,6 @@ stories:
   - action: utter_ask_order_id
   - intent: give_id
   - action: action_check_order_id
-
-
-#- story: give_order_info_without_id
-#  steps:
-#  - intent: order_info
-#  - action: utter_ask_order_id
-#  - intent: give_id
-#  - action: utter_give_order_info
-
 
 - story: happy path
   steps:

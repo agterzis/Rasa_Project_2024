@@ -2,6 +2,24 @@ version: "3.1"
 
 nlu:
 
+
+- intent: request_refund
+  examples: |
+    - I would like refund
+    - I want my money back
+    - Please refund my order
+    - I need to return these for a refund
+    - Not happy with my purchase and would like a refund
+
+- intent: request_exchange
+  examples: |
+    - I would like to exchange the product
+    - I would like different shoes
+    - I'd like to exchange this item
+    - I need to exchange this for something else
+    - Exchange this item please
+    
+
 - intent: give_id
   examples: |
     - [12345](id)
@@ -14,6 +32,15 @@ nlu:
     - When will my order with id [12345](id) arrive?
     - Can you tell me the status of my order with id [12345](id)?
     - Why hasn't my order with id [12345](id) arrived yet?  
+
+- intent: problem_with_order
+  examples: |
+    - I think there is a problem with my order
+    - The shoes I received are the wrong size
+    - The shoes I ordered are damaged
+    - The wrong shoes were sent to me
+    - The shoes arrived in poor condition
+    - The color of the shoes is not what I expected
 
 #- intent: order_info
 #  examples: |

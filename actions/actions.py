@@ -1,7 +1,6 @@
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet  # Import SlotSet
 
 
 class ActionCheckOrderId(Action):
@@ -13,10 +12,23 @@ class ActionCheckOrderId(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         order_id = next(tracker.get_latest_entity_values("id"), None)
+        # intent_name = tracker.latest_message['intent'].get('name')
+        # current_story = tracker.get_slot("current_story")
+        exchange_requested = tracker.get_slot("exchange")  # Παίρνουμε την τιμή του slot
+        refund_requested = tracker.get_slot("refund")  # Παίρνουμε την τιμή του slot
 
-        if order_id == "12345":
-            dispatcher.utter_message(text="Your order will arrive in one day.")
+        if refund_requested:     # Λογική για επιστροφή χρημάτων
+            dispatcher.utter_message(text=f"Okay, a refund will be issued for the order with ID {order_id}. "
+                                          f"Can I help you with something else? ")
+            return []
+        elif exchange_requested:     # Λογική για ανταλλαγή
+            dispatcher.utter_message(text=f"Nice, I'll change your order with ID {order_id} with something new. What "
+                                          f"would you like to buy?")
             return []
         else:
-            dispatcher.utter_message(text="Incorrect ID, please try again.")
-            return []
+            if order_id == "12345":
+                dispatcher.utter_message(text="Your order will arrive in one day.")
+                return []
+            else:
+                dispatcher.utter_message(text=f"Sorry, I couldn't find any order with ID {order_id}. Please try again!")
+                return []

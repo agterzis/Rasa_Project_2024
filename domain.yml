@@ -10,20 +10,42 @@ intents:
   - bot_challenge
   - order_info
   - give_id
+  - problem_with_order
+  - request_refund
+  - request_exchange
 
 entities:
     - id
+    - refund
+    - exchange
 
 actions:
   - action_check_order_id
 
 slots:
+  refund:
+    type: bool
+    influence_conversation: false
+    initial_value: false
+    mappings:
+      - type: from_intent
+        intent: request_refund
+        value: true
+  exchange:
+    type: bool
+    influence_conversation: false
+    initial_value: false
+    mappings:
+      - type: from_intent
+        intent: request_exchange
+        value: true
   id:
-    type: float
-    influence_conversation: true
+    type: text
+    influence_conversation: false
     mappings:
       - type: from_entity
         entity: id
+        actions: action_check_order_id
 
 responses:
 
@@ -31,7 +53,17 @@ responses:
     - text: "Can you tell me your order ID please?"
 
   utter_give_order_info:
-     - text: "Your order will arrive in one day"
+   - text: "Your order will arrive in one day"
+
+# Emotional intelligence
+  utter_problem_with_order:
+    - text: "I am sorry to hear that the shoes weren't what you expected. Would you like to return them and try a different style or size?"
+    - text: "I apologize for the problem with your order. Please let me know if you'd like to return the shoes for a full refund or try another solution."
+    - text: "I understand your frustration with the order. I would be happy to help you return the shoes and find a better solution."
+
+
+  utter_return_order:
+    - text: "Sorry, I can't find your order in our system. There seems to be a problem. Do you want to cancel the order or repeat?"
 
   utter_greet:
   - text: "Hey! How are you?"
