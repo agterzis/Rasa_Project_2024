@@ -2,6 +2,19 @@ version: "3.1"
 
 stories:
 
+# User asks about physical stores
+- story: ask_store_locations
+  steps:
+  - intent: ask_stores
+  - action: utter_store_locations
+
+# User asks about physical stores in
+- story: ask_store_location_with_area
+  steps:
+  - intent: ask_store_location
+    entities:
+      - location: "Thessaloniki"
+  - action: action_check_store_location
 
 # User wants refund
 - story: refund_order

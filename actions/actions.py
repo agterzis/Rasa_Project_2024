@@ -17,11 +17,11 @@ class ActionCheckOrderId(Action):
         exchange_requested = tracker.get_slot("exchange")  # Παίρνουμε την τιμή του slot
         refund_requested = tracker.get_slot("refund")  # Παίρνουμε την τιμή του slot
 
-        if refund_requested:     # Λογική για επιστροφή χρημάτων
+        if refund_requested:  # Λογική για επιστροφή χρημάτων
             dispatcher.utter_message(text=f"Okay, a refund will be issued for the order with ID {order_id}. "
                                           f"Can I help you with something else? ")
             return []
-        elif exchange_requested:     # Λογική για ανταλλαγή
+        elif exchange_requested:  # Λογική για ανταλλαγή
             dispatcher.utter_message(text=f"Nice, I'll change your order with ID {order_id} with something new. What "
                                           f"would you like to buy?")
             return []
@@ -32,3 +32,25 @@ class ActionCheckOrderId(Action):
             else:
                 dispatcher.utter_message(text=f"Sorry, I couldn't find any order with ID {order_id}. Please try again!")
                 return []
+
+
+class ActionCheckStoreLocation(Action):
+    def name(self) -> Text:
+        return "action_check_store_location"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        location = tracker.get_slot("location")
+
+        if location.lower() == "Thessaloniki":
+            dispatcher.utter_message(
+                text="We have two stores. The first one is located at 10 Egnatia Street and the second one is at "
+                     "5 Tsimiski Street.")
+        else:
+            dispatcher.utter_message(
+                text=f"Unfortunately, we don't have any store in {location} at the moment. We only have stores in "
+                     f"Thessaloniki.")
+        return []
+

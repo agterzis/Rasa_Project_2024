@@ -3,6 +3,21 @@ version: "3.1"
 nlu:
 
 
+- intent: ask_stores
+  examples: |
+    - Are there any physical stores?
+    - Where are your stores?
+    - Do you have any stores?
+    - Can you tell me where your stores are?
+
+- intent: ask_store_location
+  examples: |
+    - Are there any stores in [Athens](location)?
+    - Where is the nearest store in [Thessaloniki](location)?
+    - Can you tell me if you have a store in [Crete](location)?
+    - Do you have any stores in [Patra](location)?
+    - Where can I find your store in [Kozani](location)?
+
 - intent: request_refund
   examples: |
     - I would like refund
@@ -22,6 +37,7 @@ nlu:
 
 - intent: give_id
   examples: |
+    - [12345](id)
     - [12345](id)
     - Μy order's ID is [12345](id)
     - Yes, it's [12345](id)

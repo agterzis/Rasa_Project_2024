@@ -13,16 +13,27 @@ intents:
   - problem_with_order
   - request_refund
   - request_exchange
+  - ask_stores
+  - ask_store_location
+  - give_location
 
 entities:
     - id
     - refund
     - exchange
+    - location
 
 actions:
   - action_check_order_id
+  - action_check_store_location
 
 slots:
+  location:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: location
   refund:
     type: bool
     influence_conversation: false
@@ -48,6 +59,9 @@ slots:
         actions: action_check_order_id
 
 responses:
+
+  utter_store_locations:
+      - text: "Yes, we have two stores located in Thessaloniki. The first one is located at 10 Egnatia Street and the second one is at 5 Tsimiski Street."
 
   utter_ask_order_id:
     - text: "Can you tell me your order ID please?"
