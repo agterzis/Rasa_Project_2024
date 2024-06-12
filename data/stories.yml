@@ -114,6 +114,24 @@ stories:
   - slot_was_set:
     - product_type: "running"
   - action: action_recommend_product
+  
+#User asks for a product recommendation giving gender, color without product type
+- story: product recommendation giving gender, color without product type
+  steps:
+  - intent: provide_gender
+    entities:
+    - gender: "men"
+    - product_color: "grey"
+  - slot_was_set:
+    - gender: "men"
+    - product_color: "grey"
+  - action: utter_ask_product_type
+  - intent: product_recommendation
+    entities:
+    - product_type: "running"
+  - slot_was_set:
+    - product_type: "running"
+  - action: action_recommend_product
 
 #User asks for a product recommendation without details
 - story: product recommendation without details
@@ -154,4 +172,7 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-
+- story: user greets
+  steps:
+  - intent: greet
+  - action: utter_greet
