@@ -22,7 +22,7 @@ class ActionCheckOrderId(Action):
                                           f"Can I help you with something else? ")
             return []
         elif exchange_requested:  # Λογική για ανταλλαγή
-            dispatcher.utter_message(text=f"Nice, I'll change your order with ID {order_id} with something new. What "
+            dispatcher.utter_message(text=f"Nice, I'll change your order with ID {order_id} with a new item. What "
                                           f"would you like to buy?")
             return []
         else:
