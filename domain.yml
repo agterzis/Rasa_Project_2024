@@ -62,7 +62,7 @@ slots:
 responses:
 
   utter_store_locations:
-      - text: "Yes, we have two stores located in Thessaloniki. The first one is located at 10 Egnatia Street and the second one is at 5 Tsimiski Street."
+      - text: "We have two stores located in Thessaloniki. The first one is located at 10 Egnatia Street and the second one is at 5 Tsimiski Street."
 
   utter_ask_order_id:
     - text: "Can you tell me your order ID, please?"
