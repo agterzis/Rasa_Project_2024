@@ -93,10 +93,18 @@ class ActionRecommendProduct(Action):
                 message += f" for {gender}"
             if size:
                 message += f" in size {size}"
-            message += f", here are some recommendations: {recommendations}"
+            message += f", here are some recommendations: {recommendations}"  
+      
+          # Add a question for gym gear
+            if product_type == "gym":
+                message += " Would you like to see our latest collection of gym gear?"
         else:
             message = "Sorry, I couldn't find any shoes matching your preferences. Would you like to try a different type or style?"
+
 
         dispatcher.utter_message(text=message)
 
         return [AllSlotsReset()]
+    
+
+

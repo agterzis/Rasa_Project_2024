@@ -27,11 +27,6 @@ stories:
 - story: product recommendation with all details
   steps:
   - intent: product_recommendation
-    entities:
-      - product_type: "running"
-      - product_color: "white"
-      - gender: "men"
-      - size: "10"
   - slot_was_set:
     - product_type: "running"
     - product_color: "white"
@@ -43,10 +38,6 @@ stories:
 - story: product recommendation with product type, size and gender
   steps:
   - intent: product_recommendation
-    entities:
-      - product_type: "running"
-      - gender: "men"
-      - size: "10"
   - slot_was_set:
     - product_type: "running"
     - gender: "men"
@@ -57,16 +48,11 @@ stories:
 - story: product recommendation with product type, size without gender
   steps:
   - intent: product_recommendation
-    entities:
-     - product_type: "running"
-     - size: "10"
   - slot_was_set:
     - product_type: "running"
     - size: "10"
   - action: utter_ask_gender
   - intent: provide_gender
-    entities:
-     - gender: "men"
   - slot_was_set:
     - gender: "men"
   - action: action_recommend_product
@@ -75,9 +61,6 @@ stories:
 - story: product recommendation with product type and gender
   steps:
   - intent: product_recommendation
-    entities:
-      - product_type: "soccer"
-      - gender: "men"
   - slot_was_set:
     - product_type: "soccer"
     - gender: "men"
@@ -87,14 +70,10 @@ stories:
 - story: product recommendation without gender
   steps:
   - intent: product_recommendation
-    entities:
-    - product_type: "running"
   - slot_was_set:
-    - product_type: "running"
+    - product_type: "gym"
   - action: utter_ask_gender
   - intent: provide_gender
-    entities:
-    - gender: "men"
   - slot_was_set:
     - gender: "men"
   - action: action_recommend_product
@@ -103,32 +82,23 @@ stories:
 - story: product recommendation giving gender without product type
   steps:
   - intent: provide_gender
-    entities:
-    - gender: "men"
   - slot_was_set:
     - gender: "men"
   - action: utter_ask_product_type
   - intent: product_recommendation
-    entities:
-    - product_type: "running"
   - slot_was_set:
-    - product_type: "running"
+    - product_type: "gym"
   - action: action_recommend_product
   
 #User asks for a product recommendation giving gender, color without product type
 - story: product recommendation giving gender, color without product type
   steps:
   - intent: provide_gender
-    entities:
-    - gender: "men"
-    - product_color: "grey"
   - slot_was_set:
     - gender: "men"
     - product_color: "grey"
   - action: utter_ask_product_type
   - intent: product_recommendation
-    entities:
-    - product_type: "running"
   - slot_was_set:
     - product_type: "running"
   - action: action_recommend_product
@@ -139,17 +109,14 @@ stories:
   - intent: product_recommendation
   - action: utter_ask_product_type
   - intent: product_recommendation
-    entities:
-    - product_type: "hiking"
   - slot_was_set:
     - product_type: "hiking"
   - action: utter_ask_gender
   - intent: provide_gender
-    entities:
-      - gender: "any"
   - slot_was_set:
     - gender: "any"
   - action: action_recommend_product
+  
 
 #User asks bot capabilities
 - story: user asks the bot what they can do

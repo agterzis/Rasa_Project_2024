@@ -69,13 +69,13 @@ responses:
   - text: "Based on your preferences for {product_type} shoes, here are some recommendations: {product_recommendations}"
 
   utter_ask_gender:
-  - text: "Are you looking for {product_type} shoes for men, women, or any gender?"
+  - text: "Sure. Are you looking for {product_type} shoes for men, women, or any gender?"
 
   utter_greet:
   - text: "Hello and welcome to our e-shop! I'm here to help you find the perfect pair of shoes for any occasion. Also, I can provide information about our store, such as our refund policies, order status, and more. How can I assist you today?"
 
   utter_what_can_i_do:
-  - text: "I can help you find the perfect shoes. Whether you're looking for running shoes, formal wear, or something casual, just let me know and I'll guide you through our collection. Also, I can provide information about our store, such as our refund policies, order status, and more. How can I assist you today?"
+  - text: "I am SHOEMATE! I can help you find the perfect shoes. Whether you're looking for running shoes, formal wear, or something casual, just let me know and I'll guide you through our collection. Also, I can provide information about our store, such as our refund policies, order status, and more. How can I assist you today?"
 
   utter_did_that_help:
   - text: "Did that help you?"
