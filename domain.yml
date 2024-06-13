@@ -5,29 +5,150 @@ intents:
   - goodbye
   - affirm
   - deny
-  - mood_great
-  - mood_unhappy
   - bot_challenge
+  - order_info_with_id
+  - order_info_without_id
+  - give_id
+  - problem_with_order
+  - request_refund
+  - request_exchange
+  - ask_stores
+  - ask_store_location
+  - product_recommendation
+  - provide_gender
+  - ask_what_can_you_do
+  - thank_you
+  - out_of_scope
+
+entities:
+    - id
+    - refund
+    - exchange
+    - location
+    - product_type
+    - product_color
+    - gender
+    - size
+
+actions:
+  - action_check_order_id
+  - action_check_store_location
+  - action_recommend_product
+
+slots:
+  location:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: location
+  refund:
+    type: bool
+    influence_conversation: false
+    initial_value: false
+    mappings:
+      - type: from_intent
+        intent: request_refund
+        value: true
+  exchange:
+    type: bool
+    influence_conversation: false
+    initial_value: false
+    mappings:
+      - type: from_intent
+        intent: request_exchange
+        value: true
+  id:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: id
+        actions: action_check_order_id
+  product_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: product_type
+  product_color:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: product_color
+  gender:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: gender
+  size:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: size
+
 
 responses:
-  utter_greet:
-  - text: "Hey! How are you?"
+
+  utter_store_locations:
+      - text: "We have two stores located in Thessaloniki. The first one is located at 10 Egnatia Street and the second one is at 5 Tsimiski Street."
+
+  utter_ask_order_id:
+    - text: "Can you tell me your order ID, please?"
+
+
+# Emotional intelligence
+  utter_problem_with_order:
+    - text: "I am sorry to hear that the shoes weren't what you expected. Would you like to return them and try a different style or size?"
+    - text: "I apologize for the problem with your order. Please let me know if you'd like to return the shoes for a full refund or try another solution."
+    - text: "I understand your frustration with the order. I would be happy to help you return the shoes and find a better solution."
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
     image: "https://i.imgur.com/nGF1K8f.jpg"
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+  utter_ask_product_type:
+    - text: "Sure, I can help with that. What type of shoes are you looking for? (e.g., running, formal, casual, sports, etc.)"
 
-  utter_happy:
-  - text: "Great, carry on!"
+  utter_recommend_product:
+    - text: "Based on your preferences for {product_type} shoes, here are some recommendations: {product_recommendations}! Can I help you with something else?"
+
+  utter_ask_gender:
+    - text: "Sure. Are you looking for {product_type} shoes for men, women, or any gender?"
+
+  utter_greet:
+    - text: "Hello and welcome to our e-shop! I'm here to help you find the perfect pair of shoes for any occasion. Also, I can provide information about our store, such as our refund policies, order status, and more. How can I assist you today?"
+
+  utter_what_can_i_do:
+    - text: "I am SHOEMATE! I can help you find the perfect shoes. Whether you're looking for running shoes, formal wear, or something casual, just let me know and I'll guide you through our collection. Also, I can provide information about our store, such as our refund policies, order status, and more. How can I assist you today?"
+
+  utter_did_that_help:
+    - text: "Did that help you?"
+
+  utter_affirm:
+    - text: "Great. Is there anything else I can help you with?"
+
+  utter_ask_if_need_anything_else:
+    - text: "Is there anything else I can help you with?"
+
+  utter_what_do_you_want:
+    - text: "I can help you find the perfect shoes. Also I can provide information about our store, such as our refund policies, order status, and more. How can I help you?"
+
+  utter_thank_you:
+    - text: "You're welcome! Is there anything else I can help you with today?"
 
   utter_goodbye:
-  - text: "Bye"
+    - text: "Thank you for visiting us! It was a pleasure assisting you. If you need any more help in the future, feel free to reach out. Have a wonderful day!"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+    - text: "I am a bot, but I'm here and ready to help you with anything you need!"
+
+  utter_out_of_scope:
+    - text: "I'm sorry, I can't help with that. I'm here to assist you with finding the perfect pair of shoes and providing information about our store. Is there something else I can help you with?"
+
 
 session_config:
   session_expiration_time: 60

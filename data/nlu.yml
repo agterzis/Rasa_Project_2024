@@ -1,6 +1,140 @@
 version: "3.1"
 
 nlu:
+
+- intent: product_recommendation
+  examples: |
+    - Can you suggest some [casual](product_type) shoes?
+    - Can you help me find a product?
+    - I'm looking for shoes
+    - I need help finding the right shoes
+    - Can you recommend some shoes for me?
+    - Show me the best [running](product_type) shoes
+    - What shoes do you have for [hiking](product_type)?
+    - Do you have any [sneakers](product_type)?
+    - I'm searching for [formal](product_type) shoes
+    - Recommend some shoes for [sports](product_type)
+    - I need new [basketball](product_type) shoes
+    - What are your most popular shoes?
+    - Do you have any [black](product_color) [running](product_type) shoes?
+    - I'm looking for [red](product_color) [casual](product_type) shoes for [women](gender)
+    - Can you recommend [white](product_color) [sneakers](product_type) for [men](gender) in size [10](size)?
+    - Do you have [blue](product_color) [hiking](product_type) shoes in size [8](size)?
+    - Show me [any](gender) [formal](product_type) shoes
+    - I need gender [neutral](gender) shoes in size [5](size)
+    - I want [slippers](product_type)
+    - Show me shoes for [soccer](product_type) in size [8](size)
+    - Any good shoes for [walking](product_type) ?
+    - I need [gym](product_type) footwear 
+    - [slippers](product_type)
+    - [basketball](product_type) in size [8](size) please
+    - I want [hiking](product_type) shoes for [women](gender)
+
+- intent: ask_stores
+  examples: |
+    - Are there any physical stores?
+    - Where are your stores?
+    - Do you have any stores?
+    - Can you tell me where your stores are?
+
+- intent: ask_store_location
+  examples: |
+    - Are there any stores in [Athens](location)?
+    - Where is the nearest store in [Thessaloniki](location)?
+    - Can you tell me if you have a store in [Crete](location)?
+    - Do you have any stores in [Patra](location)?
+    - Where can I find your store in [Kozani](location)?
+
+- intent: request_refund
+  examples: |
+    - I would like refund
+    - I want my money back
+    - Please refund my order
+    - I need to return these for a refund
+    - Not happy with my purchase and would like a refund
+
+- intent: request_exchange
+  examples: |
+    - I would like to exchange the product
+    - I would like different shoes
+    - I'd like to exchange this item
+    - I need to exchange this for something else
+    - Exchange this item please
+
+- intent: give_id
+  examples: |
+    - [12345](id)
+    - [12345](id)
+    - Μy order's ID is [12345](id)
+    - Yes, it's [12345](id)
+
+- intent: order_info_with_id
+  examples: |
+    - Where is my order with id [12345](id)?
+    - When will my order with id [12345](id) arrive?
+    - Why hasn't my order with id [12345](id) arrived yet?  
+
+- intent: order_info_without_id
+  examples: |
+    - Where is my order?
+    - When will my order arrive?
+    - Why hasn't my order arrived yet?
+
+- intent: problem_with_order
+  examples: |
+    - I think there is a problem with my order
+    - The shoes I received are the wrong size
+    - The shoes I ordered are damaged
+    - The wrong shoes were sent to me
+    - The shoes arrived in poor condition
+    - The color of the shoes is not what I expected
+
+- intent: provide_gender
+  examples: |
+    - [men](gender)
+    - [woman](gender)
+    - [any](gender) gender
+    - no preference
+    - [neutral](gender)
+    - [any](gender)
+    - [all](gender)
+    - I am looking for shoes for [men](gender)
+    - I need [women](gender)'s shoes
+    - I'm shopping for [any](gender) gender shoes
+
+- intent: ask_what_can_you_do
+  examples: |
+    - What can you do?
+    - What services do you offer?
+    - How can you help me?
+    - What can you help me with?
+    - What are your capabilities?
+    - What kind of assistance do you provide?
+    - Can you tell me what you can do?
+    - What are your features?
+    - How can you assist me?
+    - What functions do you have?
+
+- intent: out_of_scope
+  examples: |
+    - I want to order a pizza
+    - What's the weather like?
+    - Tell me a joke
+    - Can you book a flight for me?
+    - What time is it?
+    - Tell me something interesting
+    - Who won the game last night?
+    - that's not what I want 
+    - you are no help
+    - stop
+    - order a pizza
+    - tell me the weather
+    - none of your business 
+    - stop asking 
+    - nevermind
+    - I changed my mind
+    - I want something else
+
 - intent: greet
   examples: |
     - hey

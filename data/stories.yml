@@ -2,29 +2,191 @@ version: "3.1"
 
 stories:
 
-- story: happy path
+# User asks about physical stores
+- story: ask_store_locations
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+  - intent: ask_stores
+  - action: utter_store_locations
 
-- story: sad path 1
+# User asks about physical stores in
+- story: ask_store_location_with_area
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
+  - intent: ask_store_location
+    entities:
+      - location: "Thessaloniki"
+  - action: action_check_store_location
+
+# User wants refund
+- story: refund_order
+  steps:
+  - intent: problem_with_order
+  - action: utter_problem_with_order
+  - intent: request_refund
+  - action: utter_ask_order_id
+  - intent: give_id
+    entities:
+      - id: "12345"
+  - action: action_check_order_id
+
+  # User wants to exchange his order
+- story: exchange_order
+  steps:
+  - intent: problem_with_order
+  - action: utter_problem_with_order
+  - intent: request_exchange
+  - action: utter_ask_order_id
+  - intent: give_id
+    entities:
+      - id: "12345"
+  - action: action_check_order_id
+  #- story: product recommendation with all details
+
+# User asks for his order location without giving his ID order
+- story: give_order_info_without_id
+  steps:
+  - intent: order_info_without_id
+  - action: utter_ask_order_id
+  - intent: give_id
+    entities:
+      - id: "12345"
+  - action: action_check_order_id
+
+# User asks for his order location and giving his ID order
+- story: give_order_info_with_id
+  steps:
+  - intent: order_info_with_id
+    entities:
+      - id: "12345"
+  - action: action_check_order_id
+
+# User asks something irrelevant
+- story: handle out of scope
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+
+# User asks for a product recommendation giving product type, color, size and gender
+- story: product recommendation with all details
+  steps:
+  - intent: product_recommendation
+  - slot_was_set:
+    - product_type: "running"
+    - product_color: "white"
+    - gender: "men"
+    - size: "10"
+  - action: action_recommend_product
+
+# User asks for a product recommendation giving product type, size and gender
+- story: product recommendation with product type, size and gender
+  steps:
+  - intent: product_recommendation
+  - slot_was_set:
+    - product_type: "running"
+    - gender: "men"
+    - size: "10"
+  - action: action_recommend_product
+
+# User asks for a product recommendation giving product type, size without gender
+- story: product recommendation with product type, size without gender
+  steps:
+  - intent: product_recommendation
+  - slot_was_set:
+    - product_type: "running"
+    - size: "10"
+  - action: utter_ask_gender
+  - intent: provide_gender
+  - slot_was_set:
+    - gender: "men"
+  - action: action_recommend_product
+
+# User asks for a product recommendation giving product type and gender
+- story: product recommendation with product type and gender
+  steps:
+  - intent: product_recommendation
+  - slot_was_set:
+    - product_type: "soccer"
+    - gender: "men"
+  - action: action_recommend_product
+
+# User asks for a product recommendation giving product type without gender
+- story: product recommendation without gender
+  steps:
+  - intent: product_recommendation
+  - slot_was_set:
+    - product_type: "gym"
+  - action: utter_ask_gender
+  - intent: provide_gender
+  - slot_was_set:
+    - gender: "men"
+  - action: action_recommend_product
+
+# User asks for a product recommendation giving gender without product type
+- story: product recommendation giving gender without product type
+  steps:
+  - intent: provide_gender
+  - slot_was_set:
+    - gender: "men"
+  - action: utter_ask_product_type
+  - intent: product_recommendation
+  - slot_was_set:
+    - product_type: "gym"
+  - action: action_recommend_product
+
+# User asks for a product recommendation giving gender, color without product type
+- story: product recommendation giving gender, color without product type
+  steps:
+  - intent: provide_gender
+  - slot_was_set:
+    - gender: "men"
+    - product_color: "grey"
+  - action: utter_ask_product_type
+  - intent: product_recommendation
+  - slot_was_set:
+    - product_type: "running"
+  - action: action_recommend_product
+
+# User asks for a product recommendation without details
+- story: product recommendation without details
+  steps:
+  - intent: product_recommendation
+  - action: utter_ask_product_type
+  - intent: product_recommendation
+  - slot_was_set:
+    - product_type: "hiking"
+  - action: utter_ask_gender
+  - intent: provide_gender
+  - slot_was_set:
+    - gender: "any"
+  - action: action_recommend_product
+
+
+# User asks bot capabilities
+- story: user asks the bot what they can do
+  steps:
+  - intent: ask_what_can_you_do
+  - action: utter_what_can_i_do
+
+- story: what do you want
+  steps:
   - intent: affirm
-  - action: utter_happy
+  - action: utter_what_do_you_want
 
-- story: sad path 2
+- story: user_thanks_and_engage
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
+  - intent: thank_you
+  - action: utter_thank_you
+  - intent: affirm
+  - action: utter_ask_if_need_anything_else
+
+- story: user_thanks_and_goodbye
+  steps:
+  - intent: thank_you
+  - action: utter_thank_you
   - intent: deny
   - action: utter_goodbye
+
+- story: user greets
+  steps:
+  - intent: greet
+  - action: utter_greet
